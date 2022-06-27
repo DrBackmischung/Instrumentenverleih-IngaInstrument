@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 @Controller
 @RestController
@@ -24,37 +23,27 @@ public class QueryController {
 		if(QueryValidator.contains(query, "ausleihe", "ausleihen", "rent", "rental")) {
 			
 			String uri = baseURL+"ausleihe";
-			RestTemplate t = new RestTemplate();
-		    Object result = t.getForObject(uri, Object.class);
-			return new ResponseEntity<Object>(new Response(ResponseType.LINK, result), HttpStatus.OK);
+			return new ResponseEntity<Object>(new Response(ResponseType.LINK, uri), HttpStatus.OK);
 			
 		} else if(QueryValidator.contains(query, "profil", "profile")) {
 			
 			String uri = baseURL+"profil";
-			RestTemplate t = new RestTemplate();
-		    Object result = t.getForObject(uri, Object.class);
-			return new ResponseEntity<Object>(new Response(ResponseType.LINK, result), HttpStatus.OK);
+			return new ResponseEntity<Object>(new Response(ResponseType.LINK, uri), HttpStatus.OK);
 			
 		} else if(QueryValidator.contains(query, "login", "einloggen", "signin")) {
 			
 			String uri = baseURL+"login";
-			RestTemplate t = new RestTemplate();
-		    Object result = t.getForObject(uri, Object.class);
-			return new ResponseEntity<Object>(new Response(ResponseType.LINK, result), HttpStatus.OK);
+			return new ResponseEntity<Object>(new Response(ResponseType.LINK, uri), HttpStatus.OK);
 			
 		} else if(QueryValidator.contains(query, "registrierung", "registrieren", "signup", "new account")) {
 			
 			String uri = baseURL+"signup";
-			RestTemplate t = new RestTemplate();
-		    Object result = t.getForObject(uri, Object.class);
-			return new ResponseEntity<Object>(new Response(ResponseType.LINK, result), HttpStatus.OK);
+			return new ResponseEntity<Object>(new Response(ResponseType.LINK, uri), HttpStatus.OK);
 			
 		} else {
 			
 			String uri = "Sorry, ich weiß nicht, was ich machen soll :-(";
-			RestTemplate t = new RestTemplate();
-		    Object result = t.getForObject(uri, Object.class);
-			return new ResponseEntity<Object>(new Response(ResponseType.STRING, result), HttpStatus.OK);
+			return new ResponseEntity<Object>(new Response(ResponseType.STRING, uri), HttpStatus.OK);
 			
 		}
 		
