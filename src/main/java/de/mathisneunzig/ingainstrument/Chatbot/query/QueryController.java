@@ -15,7 +15,7 @@ public class QueryController {
 	
 	String baseURL = "http://localhost:3000/";
 	
-	@GetMapping("/{query}")
+	@GetMapping("/{ip}/{query}")
 	public ResponseEntity<Object> getQueryResponse(@PathVariable String query){
 		
 		query = query.replace("_", " ");
@@ -25,17 +25,20 @@ public class QueryController {
 			String uri = baseURL+"ausleihe";
 			return new ResponseEntity<Object>(new Response(ResponseType.LINK, uri), HttpStatus.OK);
 			
-		} else if(QueryValidator.contains(query, "profil", "profile")) {
+		} else if(QueryValidator.somewhereRoughlyContains(query, "profil")) {
 			
 			String uri = baseURL+"profil";
 			return new ResponseEntity<Object>(new Response(ResponseType.LINK, uri), HttpStatus.OK);
 			
-		} else if(QueryValidator.contains(query, "login", "einloggen", "signin")) {
+		} else if(QueryValidator.somewhereRoughlyContains(query, "login") || QueryValidator.somewhereRoughlyContains(query,  "signin")) {
 			
 			String uri = baseURL+"login";
 			return new ResponseEntity<Object>(new Response(ResponseType.LINK, uri), HttpStatus.OK);
 			
-		} else if(QueryValidator.contains(query, "registrierung", "registrieren", "signup", "new account")) {
+		} else if(QueryValidator.somewhereRoughlyContains(query, "registrierung")
+				|| (QueryValidator.somewhereRoughlyContains(query, "registrieren"))
+				|| (QueryValidator.somewhereRoughlyContains(query, "new account")
+						|| QueryValidator.somewhereRoughlyContains(query, "signup"))) {
 			
 			String uri = baseURL+"signup";
 			return new ResponseEntity<Object>(new Response(ResponseType.LINK, uri), HttpStatus.OK);
