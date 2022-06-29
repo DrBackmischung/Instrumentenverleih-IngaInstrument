@@ -36,6 +36,8 @@ public class UserProfile {
 	@Column
 	@NotNull
 	private int orgel;
+	
+	public UserProfile() {}
 
 	public UserProfile(@NotNull String ip) {
 		super();
